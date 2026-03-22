@@ -42,7 +42,7 @@ PingMe:
 8. PingMe will create the event in the connected Google Calendar.
 9. After the booking finishes, the UI shows the captured meeting details and success state.
 
-## Notes For Reviewers
+## Note:
 
 - The hosted demo writes to a real Google Calendar connected through server-side credentials.
 - This deployment uses a shared evaluation calendar rather than authenticating each visitor into their own calendar.
