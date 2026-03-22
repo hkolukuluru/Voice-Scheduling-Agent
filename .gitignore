@@ -9,3 +9,8 @@ node_modules
 .env.development
 runtime-logs
 !.env.example
+client_secret.json
+client_secret_2.json
+
+client_secret.json
+client_secret_2.json
