@@ -178,30 +178,6 @@ Then open:
 
 The app is deployed on Vercel.
 
-### Recommended deployment steps
-
-1. Push the repo to GitHub.
-2. Import the repo into Vercel.
-3. Add the same environment variables from `.env.local` into Vercel Project Settings.
-4. Redeploy after any env var changes.
-5. Test the production URL with microphone permissions enabled.
-
-### Required Vercel environment variables
-
-- `AZURE_OPENAI_ENDPOINT`
-- `AZURE_OPENAI_API_KEY`
-- `AZURE_OPENAI_DEPLOYMENT_NAME`
-- `GOOGLE_CLIENT_ID`
-- `GOOGLE_CLIENT_SECRET`
-- `GOOGLE_REFRESH_TOKEN`
-- `GOOGLE_CALENDAR_ID`
-- `NEXT_PUBLIC_DEFAULT_TIMEZONE`
-
-Important:
-
-- In Vercel, enter env var values without quotes.
-- If you update env vars, redeploy so the new values are picked up.
-
 ## Main Files
 
 - App shell: [`app/page.tsx`](/Users/harshithakolukuluru/voice-scheduling-agent/app/page.tsx)
