@@ -2,7 +2,7 @@
 
 A real-time, conflict-aware voice assistant that starts the conversation, collects scheduling details, validates a normalized slot, checks real calendar availability, proposes alternatives on conflicts, creates a real Google Calendar event only after explicit confirmation, and can optionally manage that event inside the same live session.
 
-## What this submission covers
+## What this App Does
 
 - Initiates the conversation first
 - Asks for the user's name
@@ -116,43 +116,6 @@ The app separates realtime conversation from scheduling safety checks:
 12. If the user later says `move it` or `cancel it`, the client reuses the latest session event as explicit session memory for `/api/calendar/reschedule` or `/api/calendar/cancel`.
 13. The result is sent back into the Realtime conversation so the assistant can confirm success out loud.
 
-```mermaid
-flowchart TD
-  A["Browser UI / WebRTC"] --> B["/api/realtime/session"]
-  B --> C["Azure OpenAI Realtime"]
-  C --> D["Assistant Conversation"]
-  D --> E["Tool: normalize_meeting_request"]
-  E --> F["/api/scheduling/normalize"]
-  F --> G["chrono-node + timezone validation"]
-  G --> H["Normalized slot"]
-  H --> I["Tool: check_calendar_availability"]
-  I --> J["/api/calendar/check-availability"]
-  J --> K["Google Calendar availability lookup"]
-  K --> L["Free slot or alternatives"]
-  L --> M["Assistant confirmation"]
-  M --> N["Tool: create_calendar_event"]
-  N --> O["/api/calendar/create"]
-  O --> P["Fingerprint + recheck + event insert"]
-  P --> Q["Google Calendar event created"]
-  Q --> R["Session memory stores the active event"]
-  R --> S["Optional tools: reschedule_calendar_event / cancel_calendar_event"]
-  S --> T["/api/calendar/reschedule or /api/calendar/cancel"]
-  T --> U["Assistant success response"]
-```
-
-## Why this version is stronger
-
-This implementation is intentionally more than a basic "voice UI plus one API call" demo:
-
-- The assistant does not book directly from fuzzy conversational state.
-- The server owns deterministic normalization, validation, conflict detection, and final booking safety.
-- Event creation requires a fingerprint from a previously validated free slot.
-- Booking re-checks availability at creation time to reduce race-condition risk.
-- The same safety model also applies to rescheduling, not just the first booking.
-- Corrections rerun normalization so the latest user change becomes the source of truth.
-- Invite emails are validated server-side and passed through to Google Calendar only on the backend.
-- The UI exposes transcript, structured slot state, session memory, tool audit entries, and response-latency metrics.
-- Each session can be exported as JSON for debugging, analysis, or simple eval review.
 
 ## Calendar integration
 
@@ -236,7 +199,7 @@ The client configures the session with:
   - `reschedule_calendar_event`
   - `cancel_calendar_event`
 
-## Files worth reviewing
+## Main Files 
 
 - `app/page.tsx`: landing page and demo framing
 - `components/voice-scheduler.tsx`: WebRTC session, realtime event handling, tool execution, metrics, audit logging, trace export
@@ -250,32 +213,6 @@ The client configures the session with:
 - `lib/scheduling.ts`: slot normalization, business-hour checks, fingerprints, alternative-slot search, attendee-email validation
 - `lib/prompts.ts`: system instructions and tool schemas
 
-## Suggested eval scenarios
-
-These are the cases I would test in the Loom and local runs:
-
-- Happy path: free slot, confirmation, event created
-- Conflict path: requested slot busy, assistant offers alternatives, user picks one
-- Missing detail: user gives only a date, assistant asks for time
-- Deterministic normalization: user says "tomorrow at 3 PM" and the backend resolves it correctly
-- Ambiguous relative date: user says "tomorrow afternoon"
-- Optional title omitted
-- Optional duration: user asks for a 60-minute session
-- Optional attendee invites: user adds one or more email addresses
-- Confirmation required: user changes a detail after the first summary
-- Correction flow: user says "actually make it Tuesday at 4 PM" and the agent reruns normalization + availability
-- Session memory flow: user says "move it to 4 PM" after booking and the system reschedules the latest event
-- Cancellation flow: user says "cancel the meeting" after booking and the system deletes the latest event
-- Safety check: event creation fails if there is no valid fingerprint
-- Race-condition path: slot becomes unavailable between check and create
-
-## Submission checklist
-
-- Replace the hosted URL placeholder above
-- Add your Loom or screenshots
-- In the Loom, show both the happy path and a conflict/alternative path
-- Deploy to Vercel or another Next.js-friendly host
-- Confirm the environment variables are configured in the deployment platform
 
 ## Notes
 
