@@ -9,7 +9,7 @@ PingMe is a real-time voice scheduling assistant. It starts the conversation, co
 
 ## What the App Does
 
-PingMe is designed to satisfy the full assignment flow:
+PingMe:
 
 - Initiates the conversation first
 - Asks for the user's name
