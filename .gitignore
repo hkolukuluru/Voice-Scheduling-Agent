@@ -1,0 +1,11 @@
+node_modules
+.next
+.DS_Store
+.vercel
+*.log
+.env
+.env.local
+.env.production
+.env.development
+runtime-logs
+!.env.example
