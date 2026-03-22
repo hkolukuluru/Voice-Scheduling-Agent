@@ -130,8 +130,6 @@ cp .env.example .env.local
 
 ### 3. Add required environment variables
 
-Use the values below in [`.env.local`](/.env.local):
-
 ```env
 AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
 AZURE_OPENAI_API_KEY=your-azure-openai-api-key
