@@ -74,17 +74,17 @@ flowchart LR
 
 ### End-to-End Request Flow
 
-1. The browser opens a realtime voice session through [`/api/realtime/session`](/Users/harshithakolukuluru/voice-scheduling-agent/app/api/realtime/session/route.ts).
+1. The browser opens a realtime voice session through [`/api/realtime/session`](/app/api/realtime/session/route.ts).
 2. Azure OpenAI Realtime handles the live spoken interaction.
 3. Once PingMe has enough information, it calls `normalize_meeting_request`.
-4. The client forwards that tool call to [`/api/scheduling/normalize`](/Users/harshithakolukuluru/voice-scheduling-agent/app/api/scheduling/normalize/route.ts).
+4. The client forwards that tool call to [`/api/scheduling/normalize`](/app/api/scheduling/normalize/route.ts).
 5. The backend normalizes natural-language date and time into a deterministic slot.
 6. PingMe then calls `check_calendar_availability`.
-7. The client forwards that request to [`/api/calendar/check-availability`](/Users/harshithakolukuluru/voice-scheduling-agent/app/api/calendar/check-availability/route.ts).
+7. The client forwards that request to [`/api/calendar/check-availability`](/app/api/calendar/check-availability/route.ts).
 8. The backend checks real Google Calendar availability.
 9. PingMe reads the normalized details back to the user for confirmation.
 10. After explicit confirmation, PingMe calls `create_calendar_event`.
-11. The client sends that request to [`/api/calendar/create`](/Users/harshithakolukuluru/voice-scheduling-agent/app/api/calendar/create/route.ts).
+11. The client sends that request to [`/api/calendar/create`](/app/api/calendar/create/route.ts).
 12. The backend re-validates the slot and creates the real Google Calendar event.
 
 ## Tech Stack
@@ -110,9 +110,9 @@ The app uses server-side Google Calendar access.
 
 Relevant implementation:
 
-- Calendar client and operations: [`lib/google-calendar.ts`](/Users/harshithakolukuluru/voice-scheduling-agent/lib/google-calendar.ts)
-- Scheduling validation and normalization: [`lib/scheduling.ts`](/Users/harshithakolukuluru/voice-scheduling-agent/lib/scheduling.ts)
-- Prompt and tool definitions: [`lib/prompts.ts`](/Users/harshithakolukuluru/voice-scheduling-agent/lib/prompts.ts)
+- Calendar client and operations: [`lib/google-calendar.ts`](/lib/google-calendar.ts)
+- Scheduling validation and normalization: [`lib/scheduling.ts`](/lib/scheduling.ts)
+- Prompt and tool definitions: [`lib/prompts.ts`](/lib/prompts.ts)
 
 ## Local Development
 
@@ -130,7 +130,7 @@ cp .env.example .env.local
 
 ### 3. Add required environment variables
 
-Use the values below in [`.env.local`](/Users/harshithakolukuluru/voice-scheduling-agent/.env.local):
+Use the values below in [`.env.local`](/.env.local):
 
 ```env
 AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
@@ -181,14 +181,14 @@ The app is deployed on Vercel.
 
 ## Main Files
 
-- App shell: [`app/page.tsx`](/Users/harshithakolukuluru/voice-scheduling-agent/app/page.tsx)
-- Voice client and realtime orchestration: [`components/voice-scheduler.tsx`](/Users/harshithakolukuluru/voice-scheduling-agent/components/voice-scheduler.tsx)
-- Azure Realtime session bootstrap: [`app/api/realtime/session/route.ts`](/Users/harshithakolukuluru/voice-scheduling-agent/app/api/realtime/session/route.ts)
-- Scheduling normalization endpoint: [`app/api/scheduling/normalize/route.ts`](/Users/harshithakolukuluru/voice-scheduling-agent/app/api/scheduling/normalize/route.ts)
-- Availability endpoint: [`app/api/calendar/check-availability/route.ts`](/Users/harshithakolukuluru/voice-scheduling-agent/app/api/calendar/check-availability/route.ts)
-- Calendar creation endpoint: [`app/api/calendar/create/route.ts`](/Users/harshithakolukuluru/voice-scheduling-agent/app/api/calendar/create/route.ts)
-- Reschedule endpoint: [`app/api/calendar/reschedule/route.ts`](/Users/harshithakolukuluru/voice-scheduling-agent/app/api/calendar/reschedule/route.ts)
-- Cancel endpoint: [`app/api/calendar/cancel/route.ts`](/Users/harshithakolukuluru/voice-scheduling-agent/app/api/calendar/cancel/route.ts)
+- App shell: [`app/page.tsx`](/app/page.tsx)
+- Voice client and realtime orchestration: [`components/voice-scheduler.tsx`](/components/voice-scheduler.tsx)
+- Azure Realtime session bootstrap: [`app/api/realtime/session/route.ts`](/app/api/realtime/session/route.ts)
+- Scheduling normalization endpoint: [`app/api/scheduling/normalize/route.ts`](/app/api/scheduling/normalize/route.ts)
+- Availability endpoint: [`app/api/calendar/check-availability/route.ts`](/app/api/calendar/check-availability/route.ts)
+- Calendar creation endpoint: [`app/api/calendar/create/route.ts`](/app/api/calendar/create/route.ts)
+- Reschedule endpoint: [`app/api/calendar/reschedule/route.ts`](/app/api/calendar/reschedule/route.ts)
+- Cancel endpoint: [`app/api/calendar/cancel/route.ts`](/app/api/calendar/cancel/route.ts)
 
 ## Current Behavior And Scope
 
