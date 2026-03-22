@@ -43,12 +43,6 @@ PingMe:
 8. PingMe will create the event in the connected Google Calendar.
 9. After the booking finishes, the UI shows the captured meeting details and success state.
 
-## Note:
-
-- The hosted demo writes to a real Google Calendar connected through server-side credentials.
-- This deployment uses a shared evaluation calendar rather than authenticating each visitor into their own calendar.
-- Chrome generally gives the smoothest microphone and WebRTC experience.
-
 ## Product Flow
 
 1. PingMe greets the user first.
@@ -196,9 +190,9 @@ The app is deployed on Vercel.
 - The app creates real calendar events on the connected Google Calendar.
 - Reschedule and cancel support are available for the latest event created in the same live session.
 
-## Known Limitations
+## Notes
 
 - The hosted app uses one connected demo calendar, not per-user Google sign-in.
-- Reschedule and cancel are scoped to the current live session’s latest event.
+- The hosted demo writes to a real Google Calendar connected through server-side credentials.
 - Voice UX depends on browser mic permissions and network quality.
-
+- Chrome generally gives the smoothest microphone and WebRTC experience.
