@@ -203,9 +203,3 @@ The app is deployed on Vercel.
 - Reschedule and cancel are scoped to the current live session’s latest event.
 - Voice UX depends on browser mic permissions and network quality.
 
-## Submission Checklist
-
-- GitHub repository: this repo
-- Hosted URL: [https://voice-scheduling-agent-xi.vercel.app/](https://voice-scheduling-agent-xi.vercel.app/)
-- Calendar integration: documented above
-- Demo video / Loom: `ADD_YOUR_LOOM_LINK_HERE`
