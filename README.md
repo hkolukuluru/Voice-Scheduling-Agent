@@ -1,6 +1,6 @@
 # PingMe
 
-PingMe is a real-time voice scheduling assistant built for the Vikara.AI AI Engineer take-home assignment. It starts the conversation, collects scheduling details through live voice interaction, confirms the final slot, and creates a real Google Calendar event.
+PingMe is a real-time voice scheduling assistant. It starts the conversation, collects scheduling details through live voice interaction, confirms the final slot, and creates a real Google Calendar event.
 
 ## Live Demo
 
