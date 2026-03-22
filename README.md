@@ -6,7 +6,7 @@ PingMe is a real-time voice scheduling assistant. It starts the conversation, co
 
 - Hosted URL: [https://voice-scheduling-agent-xi.vercel.app/](https://voice-scheduling-agent-xi.vercel.app/)
 - Demo video: [Link](https://drive.google.com/file/d/1j0-mgNljRH1mhV2SqUEx8qqygyLxKJ-m/view?usp=sharing)
-- Relevant Screenshots : [Link](https://drive.google.com/file/d/1K9qQ7gUwa26ko7D_4T_BMeQSRpInmA8z/view?usp=sharing)
+- Relevant Screenshots : [Link](https://drive.google.com/drive/folders/1-onQx0s7RYHRlNa9DgJ5GqEVbDF93uI8?usp=sharing)
 
 ## What the App Does
 
